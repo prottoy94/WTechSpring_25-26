@@ -6,20 +6,20 @@
     <title>Registration Form</title>
     <h1>Student Registration Page</h1>
 </head>
-<from>
+<form>
     <label for ="Student_Name">Student Name: </label>
     <input type ="text" id="Student_Name" name="Student_Name" placeholder="Enter your name">
     <br><br>
 
     <label for ="Student_CGPA">Student CGPA: </label>
-    <input type ="text" id="Student_CGPA" name="Student_CGPA" placeholder="Enter your CGPA">
+    <input type ="number" id="Student_CGPA" name="Student_CGPA" placeholder="Enter your CGPA">
     <br><br>
 
     <label for ="Student_Gender">Student Gender: </label><br><br>
-    <input type ="radio" id="Student_Gender" name="Student_Gender" value="Male">
-    <label for ="Student_Gender">Male</label><br><br>
-    <input type ="radio" id="Student_Gender" name="Student_Gender" value="Female">
-    <label for ="Student_Gender">Female</label>
+    <input type ="radio" id="Student_Male" name="Student_Gender" value="Male">
+    <label for ="Student_Male">Male</label><br><br>
+    <input type ="radio" id="Student_Female" name="Student_Gender" value="Female">
+    <label for ="Student_Female">Female</label>
     <br><br>
 
     <label for ="Select_Department">Select Department: </label>
@@ -36,7 +36,7 @@
     <br><br>
 
     <label for ="Student_Address">Address: </label>
-    <textarea id="Student_Address" name="Student_Address" rows="5" columns="20" placeholder="Enter your address"></textarea>
+    <textarea id="Student_Address" name="Student_Address" rows="5" cols="30" placeholder="Enter your address"></textarea>
     <br><br>
 
     <label for ="Student_DOB">Date of Birth: </label>
@@ -51,8 +51,8 @@
     <input type ="file" id="Student_File" name="Student_File">
     <br><br>
     
-    <label for ="Student_Aggrement">I agree to the terms and conditions </label>
     <input type ="checkbox" id="Student_Aggrement" name="Student_Aggrement">
+    <label for ="Student_Aggrement">I agree to the terms and conditions </label>
     <br><br>
 
     <label for ="Student_Phone">Phone Number: </label>
@@ -63,5 +63,5 @@
     <input type ="submit" id="Submit" name="Submit">
     <br><br>
     
-</from>
+</form>
 </html>
