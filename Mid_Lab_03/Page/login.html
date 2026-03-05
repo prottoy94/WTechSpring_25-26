@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../design/style.css">
+    <title>Login</title>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Contact us</h1>
+        <form onsubmit="return validateForm()">
+            <table id="table">
+                <tr>
+                    <td>
+                        <label>FIRST NAME</label><br>
+                        <input type="text" id="firstname" name="firstname">
+                        <span id="firstnameError"></span>
+                    </td>
+                    <td>
+                        <label>LAST NAME</label><br>
+                        <input type="text" id="lastname" name="lastname">
+                        <span id="lastnameError"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>EMAIL</label><br>
+                        <input type="email" id="email" name="email">
+                        <span id="emailError"></span>
+                    </td>
+                    <td>
+                        <label>PHONE NUMBER</label><br>
+                        <input type="tel" id="phone" name="phone">
+                        <span id="phoneError"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <label>WHAT DO YOU HAVE IN MIND</label><br>
+                        <textarea id="message" placeholder="Please enter query..."></textarea>
+                        <span id="messageError"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" class="btn_row">
+                        <input type="submit" value="Submit">
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+    <script src="../JS/Script.js"></script>
+</body>
+</html>
