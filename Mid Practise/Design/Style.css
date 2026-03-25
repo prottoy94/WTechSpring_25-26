@@ -1,0 +1,21 @@
+.container
+{
+    width: 500px;
+    border: 3px solid #5100b3;
+    padding: 10px;
+    margin: 120px auto;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+#results
+{
+    font-size: 18px;
+    color: #320000;
+}
+.labels
+{
+    font-size: 20px;
+    font-weight: bold;
+    color: #320000;
+}
