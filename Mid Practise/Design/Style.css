@@ -34,8 +34,9 @@ h2
 {
     border: #031078 2px solid;
     border-radius: 5px;
-    color: #9f0000;
+    color: #d70d0d;
     font-family: Verdana, Geneva, Tahoma, sans-serif, Helvetica, sans-serif;
+    font-weight: bold;
 }
 #inputText:focus
 {
@@ -57,4 +58,12 @@ h2
     color: #031078;
     border: 2px solid #031078;
     cursor: pointer;
+}
+#charCount, #wordCount
+{
+    color: #00b73a;
+}
+#reverseSentence
+{
+    color: #9500ff;
 }
