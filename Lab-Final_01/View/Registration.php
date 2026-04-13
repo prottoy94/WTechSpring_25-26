@@ -38,9 +38,9 @@ include "../Controller/RegistrationValidation.php";
                 <tr>
                     <td>Gender:</td>
                     <td>
-                        <input type="radio" name="gender" value="Female" >Female <?php if($gender == "Female") echo " |checked"; ?>
-                        <input type="radio" name="gender" value="Male"> Male <?php if($gender == "Male") echo " |checked"; ?>
-                        <input type="radio" name="gender" value="Other"> Other <?php if($gender == "Other") echo " |checked"; ?>
+                        <input type="radio" name="gender" value="Female" >Female <?php if($gender == "Female") echo " <span style='color: green;'>checked</span>"; ?>
+                        <input type="radio" name="gender" value="Male"> Male <?php if($gender == "Male") echo " <span style='color: green;'>checked</span>"; ?>
+                        <input type="radio" name="gender" value="Other"> Other <?php if($gender == "Other") echo " <span style='color: green;'>checked</span>"; ?>
                     </td>
                     <td> <p style = 'color: red'>*</p> </td>
                 </tr>

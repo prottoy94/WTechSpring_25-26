@@ -31,7 +31,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         }
         else
         {
-            echo "Please fill up the NAME FIELD properly";
+            $name="Please fill up the NAME FIELD properly";
+            echo "Please fill up the NAME FIELD properly ";
         }
         if(!empty($password) && strlen($password)>8)
         {
@@ -40,15 +41,22 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         else
         {
             $password="Please fill up the PASSWORD FIELD properly";
-            echo "Please fill up the PASSWORD FIELD properly";
         }
         if(!empty($website))
         {
-            if(!preg_match("/\b(?:https?|ftp):\/\/[-A-Za-z0-9+&@#\/%?=~_|!:,.;]*[-A-Za-z0-9+&@#\/%=~_|]/",$website));
+            if(preg_match("/^(https?:\/\/)?(www\.)?[a-zA-Z0-9][a-zA-Z0-9-]*\.[a-zA-Z]{2,}([\/?#][a-zA-Z0-9-._~:\/?#\[\]@!$&'()*+,;=]*)?$/", $website))
+            {
+                $website="Valid Website";
+            }
+            else
+            {
+                $website="Invalid Website format :(( [https://www.website.com] ";
+            }
         }
         else
         {
-            echo "Please fill up the URL properly";
+            $website="Please fill up the URL properly";
+            echo "Please fill up the URL properly ";
         }
         if(!empty($comment))
         {
@@ -56,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         }
         else
         {
-            echo "Please fill up the COMMENT section";
+            echo "Please fill up the COMMENT section ";
         }
         if(!empty($gender))
         {
@@ -64,7 +72,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         }
         else
         {
-            echo "Please fill up the GENDER section";
+            echo "Please fill up the GENDER section ";
         }
     }
 
