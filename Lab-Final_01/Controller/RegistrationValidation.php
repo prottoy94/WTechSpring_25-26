@@ -7,6 +7,12 @@ $website="";
 $comment="";
 $gender="";
 
+$ccname="";
+$ccpassword="";
+$ccwebsite="";
+$cccomment="";
+$ccgender="";
+
 
 if($_SERVER["REQUEST_METHOD"]=="POST")
     {
@@ -21,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
         if(!empty($name) && strlen($name)>5)
         {
-            echo "User Name: ".$name;
+            $name="Name: ".$name;
         }
         else
         {
@@ -29,10 +35,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         }
         if(!empty($password) && strlen($password)>8)
         {
-            echo "Password: " . $password;
+            $password="Password accecpted";
         }
         else
         {
+            $password="Please fill up the PASSWORD FIELD properly";
             echo "Please fill up the PASSWORD FIELD properly";
         }
         if(!empty($website))

@@ -14,29 +14,33 @@ include "../Controller/RegistrationValidation.php";
             <table>
                 <tr>
                     <td>User Name:</td>
-                    <td><input type="text" name="name"><?php echo $name; ?></td>
+                    <td><input type="text" name="name"></td>
                     <td> <p style = 'color: red'>*</p></td>
+                    <td><?php echo $name; ?></td>
                 </tr>
                 <tr>
                     <td>Password:</td>
-                    <td><input type="password" name="password"><?php echo $password; ?></td>
+                    <td><input type="password" name="password"></td>
                     <td> <p style = 'color: red'>*</p> </td>
+                    <td><?php echo $password; ?></td>
                 </tr>
                 <tr>
                     <td>Website:</td>
-                    <td><input type="text" name="website"><?php echo $website; ?></td>
+                    <td><input type="text" name="website"></td>
                     <td> <p style = 'color: red'>*</p> </td>
+                    <td><?php echo $website; ?></td>
                 </tr>
                 <tr>
                     <td>Comment:</td>
-                    <td><textarea cols="20" rows="5" name="comment"></textarea> <?php echo $comment; ?></td>
+                    <td><textarea cols="20" rows="5" name="comment"></textarea> </td>
+                    <td><?php echo $comment; ?></td>
                 </tr>
                 <tr>
                     <td>Gender:</td>
                     <td>
-                        <input type="radio" name="gender" value="Female" >Female <?php if($gender == "Female") echo " checked"; ?>
-                        <input type="radio" name="gender" value="Male"> Male <?php if($gender == "Male") echo " checked"; ?>
-                        <input type="radio" name="gender" value="Other"> Other <?php if($gender == "Other") echo " checked"; ?>
+                        <input type="radio" name="gender" value="Female" >Female <?php if($gender == "Female") echo " |checked"; ?>
+                        <input type="radio" name="gender" value="Male"> Male <?php if($gender == "Male") echo " |checked"; ?>
+                        <input type="radio" name="gender" value="Other"> Other <?php if($gender == "Other") echo " |checked"; ?>
                     </td>
                     <td> <p style = 'color: red'>*</p> </td>
                 </tr>
