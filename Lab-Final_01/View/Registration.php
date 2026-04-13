@@ -9,6 +9,8 @@ include "../Controller/RegistrationValidation.php";
     </head>
     <body>
         <form method="post" action="">
+            <h2>PHP Validation Example</h2>
+            <p style="color: red">* required field</p>
             <table>
                 <tr>
                     <td>User Name:</td>
@@ -28,6 +30,15 @@ include "../Controller/RegistrationValidation.php";
                 <tr>
                     <td>Comment:</td>
                     <td><textarea cols="20" rows="5" name="comment"></textarea><php? echo $comment; ?></td>
+                </tr>
+                <tr>
+                    <td>Gender:</td>
+                    <td>
+                        <input type="radio" name="gender" value="Female">Female
+                        <input type="radio" name="gender" value="Male"> Male
+                        <input type="radio" name="gender" value="Other"> Other
+                    </td>
+                    <td> <p style = 'color: red'>*</p> </td>
                 </tr>
                 <tr>
                     <td colspan="2"><input type="submit" value="Submit"></td>
