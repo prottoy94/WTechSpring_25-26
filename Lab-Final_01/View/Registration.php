@@ -29,14 +29,14 @@ include "../Controller/RegistrationValidation.php";
                 </tr>
                 <tr>
                     <td>Comment:</td>
-                    <td><textarea cols="20" rows="5" name="comment"><?php echo $comment; ?></textarea></td>
+                    <td><textarea cols="20" rows="5" name="comment"></textarea> <?php echo $comment; ?></td>
                 </tr>
                 <tr>
                     <td>Gender:</td>
                     <td>
-                        <input type="radio" name="gender" value="Female" ><?php if($gender == "Female") echo "checked"; ?>Female
-                        <input type="radio" name="gender" value="Male"><?php if($gender == "Male") echo "checked"; ?> Male
-                        <input type="radio" name="gender" value="Other"><?php if($gender == "Other") echo "checked"; ?> Other
+                        <input type="radio" name="gender" value="Female" >Female <?php if($gender == "Female") echo " checked"; ?>
+                        <input type="radio" name="gender" value="Male"> Male <?php if($gender == "Male") echo " checked"; ?>
+                        <input type="radio" name="gender" value="Other"> Other <?php if($gender == "Other") echo " checked"; ?>
                     </td>
                     <td> <p style = 'color: red'>*</p> </td>
                 </tr>
