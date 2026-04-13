@@ -8,7 +8,7 @@ $comment="";
 $gender="";
 
 
-if("$_SERVER["REQUEST METHOD"]==POST")
+if($_SERVER["REQUEST METHOD"] == POST)
     {
         $name=$_POST["name"];
         $password=$_POST["password"];
@@ -37,7 +37,7 @@ if("$_SERVER["REQUEST METHOD"]==POST")
         }
         if(!empty($website))
         {
-            if(!preg_match("/\b(?:https?|ftp):\/\/[-A-Za-z0-9+&@#\/%?=~_|!:,.;]*[-A-Za-z0-9+&@#\/%=~_|]/"),$website);
+            if(!preg_match("/\b(?:https?|ftp):\/\/[-A-Za-z0-9+&@#\/%?=~_|!:,.;]*[-A-Za-z0-9+&@#\/%=~_|]/",$website));
         }
         else
         {
@@ -50,6 +50,14 @@ if("$_SERVER["REQUEST METHOD"]==POST")
         else
         {
             echo "Please fill up the COMMENT section";
+        }
+        if(!empty($gender))
+        {
+            echo "Gender: " . $gender;
+        }
+        else
+        {
+            echo "Please fill up the GENDER section";
         }
     }
 
