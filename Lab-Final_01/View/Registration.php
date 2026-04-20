@@ -16,24 +16,24 @@ include "../Controller/RegistrationValidation.php";
                     <td>User Name:</td>
                     <td><input type="text" name="name"></td>
                     <td> <p style = 'color: red'>*</p></td>
-                    <td><?php echo $name; ?></td>
+                    <td><?php echo $ccname; ?></td>
                 </tr>
                 <tr>
                     <td>Email:</td>
                     <td><input type="email" name="email"></td>
                     <td> <p style = 'color: red'>*</p> </td>
-                    <td><?php echo $email; ?></td>
+                    <td><?php echo $ccemail; ?></td>
                 </tr>
                 <tr>
                     <td>Website:</td>
                     <td><input type="text" name="website"></td>
                     <td> <p style = 'color: red'>*</p> </td>
-                    <td><?php echo $website; ?></td>
+                    <td><?php echo $ccwebsite; ?></td>
                 </tr>
                 <tr>
                     <td>Comment:</td>
                     <td><textarea cols="20" rows="5" name="comment"></textarea> </td>
-                    <td><?php echo $comment; ?></td>
+                    <td><?php echo $cccomment; ?></td>
                 </tr>
                 <tr>
                     <td>Gender:</td>

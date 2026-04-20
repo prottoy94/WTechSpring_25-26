@@ -26,43 +26,42 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
         if(!empty($name) && strlen($name)>5)
         {
-            $name="Name: ".$name;
+            $ccname="Name: ".$name;
             setcookie("name", $name, time() + (86400 * 30), "/");
             $_SESSION["name"]=$name;
         }
         else
         {
-            $name="Please fill up the NAME FIELD properly";
-            echo "Please fill up the NAME FIELD properly ";
+            $ccname="Please fill up the NAME FIELD properly";
         }
 
         if(!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL))
         {
-            $email="Email accecpted";
+            $ccemail="Email accecpted";
             setcookie("email", $email, time() + (86400 * 30), "/");
             $_SESSION["email"]=$email;
         }
         else
         {
-            $email="Please fill up the EMAIL FIELD properly";
+            $ccemail="Please fill up the EMAIL FIELD properly";
         }
 
         if(!empty($website))
         {
             if(preg_match("/^(https?:\/\/)?(www\.)?[a-zA-Z0-9][a-zA-Z0-9-]*\.[a-zA-Z]{2,}([\/?#][a-zA-Z0-9-._~:\/?#\[\]@!$&'()*+,;=]*)?$/", $website))
             {
-                $website="Valid Website";
                 setcookie("website", $website, time() + (86400 * 30), "/");
                 $_SESSION["website"]=$website;
+                $website="Valid Website";
             }
             else
             {
-                $website="Invalid Website format :(( [https://www.website.com] ";
+                $ccwebsite="Invalid Website format :(( [https://www.website.com] ";
             }
         }
         else
         {
-            $website="Please fill up the URL properly";
+            $ccwebsite="Please fill up the URL properly";
             echo "Please fill up the URL properly ";
         }
 
@@ -70,22 +69,22 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         {
             setcookie("comment", $comment, time() + (86400 * 30), "/");
             $_SESSION["comment"]=$comment;
-            echo "Comment: " . $comment;
+            $cccomment="Comment: " . $comment;
         }
         else
         {
-            echo "Please fill up the COMMENT section ";
+            $cccomment="Please fill up the COMMENT section ";
         }
 
         if(!empty($gender))
         {
             setcookie("gender", $gender, time() + (86400 * 30), "/");
             $_SESSION["gender"]=$gender;
-            echo "Gender: " . $gender;
+            $ccgender="Gender: " . $gender;
         }
         else
         {
-            echo "Please fill up the GENDER section ";
+            $ccgender="Please fill up the GENDER section ";
         }
 
     }
