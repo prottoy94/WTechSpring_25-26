@@ -1,52 +1,59 @@
 <?php
 
+session_start();
 
 $name="";
-$password="";
+$email="";
 $website="";
 $comment="";
 $gender="";
 
 $ccname="";
-$ccpassword="";
+$ccemail="";
 $ccwebsite="";
 $cccomment="";
 $ccgender="";
 
+$data_file="../data.json";
 
 if($_SERVER["REQUEST_METHOD"]=="POST")
     {
         $name=$_POST["name"];
-        $password=$_POST["password"];
+        $email=$_POST["email"];
         $website=$_POST["website"];
         $comment=$_POST["comment"];
         $gender=$_POST["gender"];
 
-        /*$name=$_REQUEST["name"];
-        $password=$_REQUEST["password"];*/
-
         if(!empty($name) && strlen($name)>5)
         {
             $name="Name: ".$name;
+            setcookie("name", $name, time() + (86400 * 30), "/");
+            $_SESSION["name"]=$name;
         }
         else
         {
             $name="Please fill up the NAME FIELD properly";
             echo "Please fill up the NAME FIELD properly ";
         }
-        if(!empty($password) && strlen($password)>8)
+
+        if(!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL))
         {
-            $password="Password accecpted";
+            $email="Email accecpted";
+            setcookie("email", $email, time() + (86400 * 30), "/");
+            $_SESSION["email"]=$email;
         }
         else
         {
-            $password="Please fill up the PASSWORD FIELD properly";
+            $email="Please fill up the EMAIL FIELD properly";
         }
+
         if(!empty($website))
         {
             if(preg_match("/^(https?:\/\/)?(www\.)?[a-zA-Z0-9][a-zA-Z0-9-]*\.[a-zA-Z]{2,}([\/?#][a-zA-Z0-9-._~:\/?#\[\]@!$&'()*+,;=]*)?$/", $website))
             {
                 $website="Valid Website";
+                setcookie("website", $website, time() + (86400 * 30), "/");
+                $_SESSION["website"]=$website;
             }
             else
             {
@@ -58,22 +65,29 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             $website="Please fill up the URL properly";
             echo "Please fill up the URL properly ";
         }
+
         if(!empty($comment))
         {
+            setcookie("comment", $comment, time() + (86400 * 30), "/");
+            $_SESSION["comment"]=$comment;
             echo "Comment: " . $comment;
         }
         else
         {
             echo "Please fill up the COMMENT section ";
         }
+
         if(!empty($gender))
         {
+            setcookie("gender", $gender, time() + (86400 * 30), "/");
+            $_SESSION["gender"]=$gender;
             echo "Gender: " . $gender;
         }
         else
         {
             echo "Please fill up the GENDER section ";
         }
+
     }
 
 ?>

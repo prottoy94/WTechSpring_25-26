@@ -19,10 +19,10 @@ include "../Controller/RegistrationValidation.php";
                     <td><?php echo $name; ?></td>
                 </tr>
                 <tr>
-                    <td>Password:</td>
-                    <td><input type="password" name="password"></td>
+                    <td>Email:</td>
+                    <td><input type="email" name="email"></td>
                     <td> <p style = 'color: red'>*</p> </td>
-                    <td><?php echo $password; ?></td>
+                    <td><?php echo $email; ?></td>
                 </tr>
                 <tr>
                     <td>Website:</td>
