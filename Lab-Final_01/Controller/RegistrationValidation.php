@@ -48,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
         if(!empty($website))
         {
-            if(preg_match("/^(https?:\/\/)?(www\.)?[a-zA-Z0-9][a-zA-Z0-9-]*\.[a-zA-Z]{2,}([\/?#][a-zA-Z0-9-._~:\/?#\[\]@!$&'()*+,;=]*)?$/", $website))
+            if(preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $website))
             {
                 $ccwebsite="Valid Website";
                 setcookie("website", $website, time() + (86400 * 30), "/");
