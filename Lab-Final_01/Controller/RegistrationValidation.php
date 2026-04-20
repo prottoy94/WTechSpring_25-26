@@ -50,9 +50,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         {
             if(preg_match("/^(https?:\/\/)?(www\.)?[a-zA-Z0-9][a-zA-Z0-9-]*\.[a-zA-Z]{2,}([\/?#][a-zA-Z0-9-._~:\/?#\[\]@!$&'()*+,;=]*)?$/", $website))
             {
+                $ccwebsite="Valid Website";
                 setcookie("website", $website, time() + (86400 * 30), "/");
                 $_SESSION["website"]=$website;
-                $website="Valid Website";
             }
             else
             {
@@ -62,7 +62,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         else
         {
             $ccwebsite="Please fill up the URL properly";
-            echo "Please fill up the URL properly ";
         }
 
         if(!empty($comment))
@@ -88,5 +87,33 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         }
 
     }
+    // JSON part
+    $formdata=array("Name"=>$name, "Password"=>$password, "Website"=>$website, "Comment"=>$comment, "Gender"=>$gender);
 
+    if(file_exists($data_file))
+    {
+        $existdata=file_get_contents($data_file);
+        $tempdata=json_decode($existdata, true);
+    }
+    else
+    {
+        $tempdata=array();
+    }
+
+    if(!is_array($tempdata))
+    {
+        $tempdata=array();
+    }
+
+    $tempdata[]=$formdata;
+    $jsondata=json_encode($tempdata, JSON_PRETTY_PRINT);
+
+    if(file_put_contents($data_file, $jsondata)==false)
+    {
+        echo "Data saved to the file.";
+    }
+    else
+    {
+        echo "Data saved";
+    }
 ?>
