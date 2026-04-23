@@ -19,6 +19,12 @@ include "../Controller/RegistrationValidation.php";
                     <td><?php echo $ccname; ?></td>
                 </tr>
                 <tr>
+                    <td>User Password:</td>
+                    <td><input type="password" name="password"></td>
+                    <td> <p style = 'color: red'>*</p></td>
+                    <td><?php echo $ccpassword; ?></td>
+                </tr>
+                <tr>
                     <td>Email:</td>
                     <td><input type="email" name="email"></td>
                     <td> <p style = 'color: red'>*</p> </td>

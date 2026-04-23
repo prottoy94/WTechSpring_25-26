@@ -3,12 +3,14 @@
 session_start();
 
 $name="";
+$password="";
 $email="";
 $website="";
 $comment="";
 $gender="";
 
 $ccname="";
+$ccpassword="";
 $ccemail="";
 $ccwebsite="";
 $cccomment="";
@@ -34,7 +36,16 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         {
             $ccname="Please fill up the NAME FIELD properly";
         }
-
+        if(!empty($password) && strlen($password)>8)
+        {
+            $ccpassword="Password accepted";
+            setcookie("password", $password, time() + (86400 * 30), "/");
+            $_SESSION["password"]=$password;
+        }
+        else
+        {
+            $ccpassword="Please fill up the PASSWORD FIELD properly";
+        }
         if(!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL))
         {
             $ccemail="Email accecpted";
@@ -88,7 +99,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
     }
     // JSON part
-    $formdata=array("Name"=>$name, "Password"=>$password, "Website"=>$website, "Comment"=>$comment, "Gender"=>$gender);
+    $formdata=array("Name"=>$name, "Password"=>$password, "Email"=>$email, "Website"=>$website, "Comment"=>$comment, "Gender"=>$gender);
 
     if(file_exists($data_file))
     {
