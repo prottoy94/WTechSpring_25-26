@@ -1,5 +1,4 @@
 <?php
-import "../RegistrationValidation.php";
 class db
 {
     function connection()

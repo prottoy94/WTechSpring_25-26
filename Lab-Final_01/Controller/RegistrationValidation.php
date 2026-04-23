@@ -1,5 +1,5 @@
 <?php
-
+include "../Model/db.php";
 session_start();
 
 $name="";
@@ -18,13 +18,19 @@ $ccgender="";
 
 $data_file="../data.json";
 
+$database = new db();
+$connection =$database->connection();
+$isValid=true;
+
+
 if($_SERVER["REQUEST_METHOD"]=="POST")
     {
         $name=$_POST["name"];
+        $password=$_POST["password"];
         $email=$_POST["email"];
         $website=$_POST["website"];
         $comment=$_POST["comment"];
-        $gender=$_POST["gender"];
+        $gender = $_POST["gender"] ?? "";
 
         if(!empty($name) && strlen($name)>5)
         {
@@ -35,8 +41,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         else
         {
             $ccname="Please fill up the NAME FIELD properly";
+            $isValid=false;
         }
-        if(!empty($password) && strlen($password)>8)
+        if(!empty($password) && strlen($password)>3)
         {
             $ccpassword="Password accepted";
             setcookie("password", $password, time() + (86400 * 30), "/");
@@ -45,6 +52,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         else
         {
             $ccpassword="Please fill up the PASSWORD FIELD properly";
+            $isValid=false;
         }
         if(!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL))
         {
@@ -55,6 +63,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         else
         {
             $ccemail="Please fill up the EMAIL FIELD properly";
+            $isValid=false;
         }
 
         if(!empty($website))
@@ -68,11 +77,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             else
             {
                 $ccwebsite="Invalid Website format :(( [https://www.website.com] ";
+                $isValid=false;
             }
         }
         else
         {
             $ccwebsite="Please fill up the URL properly";
+            $isValid=false;
         }
 
         if(!empty($comment))
@@ -84,17 +95,38 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         else
         {
             $cccomment="Please fill up the COMMENT section ";
+            $isValid=false;
         }
-
-        if(!empty($gender))
+        $allowedGenders = ["Female", "Male", "Other"];
+        if ($gender !== "" && in_array($gender, $allowedGenders, true))
         {
             setcookie("gender", $gender, time() + (86400 * 30), "/");
-            $_SESSION["gender"]=$gender;
-            $ccgender="Gender: " . $gender;
+            $_SESSION["gender"] = $gender;
+            $ccgender = "Gender: " . $gender;
+        } 
+        else
+        {
+            $ccgender = "Please fill up the GENDER section";
+            $isValid = false;
+        }
+        if($isValid)
+        {
+            $result=$database->signup($connection, "registration", $name, $password, $email, $website, $comment, $gender);
+            if($result)
+            {
+                echo "Data inserted successfully";
+                Header("Location: ../View/login.php");
+                exit();
+            }
+            else
+            {
+                echo "Error inserting data: " . $connection->error;
+            }
         }
         else
         {
-            $ccgender="Please fill up the GENDER section ";
+            echo "Please fill up the form properly";
+            exit();
         }
 
     }
