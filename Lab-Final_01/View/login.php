@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h2>Login Form</h2>
-        <form method="post" action="User_dashboard.php">
+        <form method="post" action="../Controller/loginValidation.php">
             
                 <label for="name">User Name: <label>
                 <input type="text" name="name" required><br><br>

@@ -10,7 +10,10 @@ session_start();
 </head>
 <body>
     <h2>
-        Welcome <?php echo $_SESSION["name"]; ?> to your Dashboard
+        Welcome <?php echo $_SESSION["name"]; ?> to your Dashboard 
     </h2>
+    <br><br>
+    <button><a href="login.php">Logout</a></button><br><br>
+    <button><a href="Registration.php">Go to Registration Page</a></button>
 </body>
 </html>

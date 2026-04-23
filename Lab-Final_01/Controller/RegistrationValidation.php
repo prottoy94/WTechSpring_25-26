@@ -25,14 +25,14 @@ $isValid=true;
 
 if($_SERVER["REQUEST_METHOD"]=="POST")
     {
-        $name=$_POST["name"];
-        $password=$_POST["password"];
-        $email=$_POST["email"];
-        $website=$_POST["website"];
-        $comment=$_POST["comment"];
+        $name=$_POST["name"] ?? "";
+        $password=$_POST["password"] ?? "";
+        $email=$_POST["email"] ?? "";
+        $website=$_POST["website"] ?? "";
+        $comment=$_POST["comment"] ?? "";
         $gender = $_POST["gender"] ?? "";
 
-        if(!empty($name) && strlen($name)>5)
+        if(!empty($name) && strlen($name)>3)
         {
             $ccname="Name: ".$name;
             setcookie("name", $name, time() + (86400 * 30), "/");
@@ -114,7 +114,27 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             $result=$database->signup($connection, "registration", $name, $password, $email, $website, $comment, $gender);
             if($result)
             {
-                echo "Data inserted successfully";
+                $formdata=array("Name"=>$name, "Password"=>$password, "Email"=>$email, "Website"=>$website, "Comment"=>$comment, "Gender"=>$gender);
+
+                if(file_exists($data_file))
+                {
+                    $existdata=file_get_contents($data_file);
+                    $tempdata=json_decode($existdata, true);
+                }
+                else
+                {
+                    $tempdata=array();
+                }
+
+                if(!is_array($tempdata))
+                {
+                    $tempdata=array();
+                }
+
+                $tempdata[]=$formdata;
+                $jsondata=json_encode($tempdata, JSON_PRETTY_PRINT);
+                file_put_contents($data_file, $jsondata);
+
                 Header("Location: ../View/login.php");
                 exit();
             }
@@ -129,34 +149,5 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             exit();
         }
 
-    }
-    // JSON part
-    $formdata=array("Name"=>$name, "Password"=>$password, "Email"=>$email, "Website"=>$website, "Comment"=>$comment, "Gender"=>$gender);
-
-    if(file_exists($data_file))
-    {
-        $existdata=file_get_contents($data_file);
-        $tempdata=json_decode($existdata, true);
-    }
-    else
-    {
-        $tempdata=array();
-    }
-
-    if(!is_array($tempdata))
-    {
-        $tempdata=array();
-    }
-
-    $tempdata[]=$formdata;
-    $jsondata=json_encode($tempdata, JSON_PRETTY_PRINT);
-
-    if(file_put_contents($data_file, $jsondata)==false)
-    {
-        echo "Data saved to the file.";
-    }
-    else
-    {
-        echo "Data saved";
     }
 ?>
