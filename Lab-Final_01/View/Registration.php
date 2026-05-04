@@ -6,16 +6,18 @@ include "../Controller/RegistrationValidation.php";
 <html>
     <head>
         <title>Registration Form</title>
+        <script src="../Controller/JS/CheckUserName.js?v=2"></script>
     </head>
     <body>
-        <form method="post" action="">
+        <form method="post" action="" enctype="multipart/form-data">
             <h2>PHP Validation Example</h2>
             <p style="color: red">* required field</p>
             <table>
                 <tr>
                     <td>User Name:</td>
-                    <td><input type="text" name="name"></td>
+                    <td><input type="text" id="name" name="name" onkeyup="checkUserName()"></td>
                     <td> <p style = 'color: red'>*</p></td>
+                    <td><p id="userresponse"></p></td>
                     <td><?php echo $ccname; ?></td>
                 </tr>
                 <tr>
@@ -53,8 +55,12 @@ include "../Controller/RegistrationValidation.php";
                 <tr>
                     <td colspan="2"><input type="submit" value="Submit"></td>
                 </tr>
+                <tr>
+                    <td>Add an attachment:</td>
+                    <td><input type="file" name="file"></td>
+                    <td><?php echo $ccfile ?></td>
+                </tr>
             </table>
         </form>
-        
     </body>
 </html>

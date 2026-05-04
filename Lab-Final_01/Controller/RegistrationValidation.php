@@ -15,6 +15,8 @@ $ccemail="";
 $ccwebsite="";
 $cccomment="";
 $ccgender="";
+$ccfile="";
+$path="";
 
 $data_file="../data.json";
 
@@ -31,12 +33,14 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         $website=$_POST["website"] ?? "";
         $comment=$_POST["comment"] ?? "";
         $gender = $_POST["gender"] ?? "";
+        $file = $_FILES["file"] ?? null;
 
         if(!empty($name) && strlen($name)>3)
         {
             $ccname="Name: ".$name;
             setcookie("name", $name, time() + (86400 * 30), "/");
             $_SESSION["name"]=$name;
+            
         }
         else
         {
@@ -85,7 +89,23 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             $ccwebsite="Please fill up the URL properly";
             $isValid=false;
         }
-
+        if($file)
+        {
+            $target_dir = "../File/";
+            $target_file = $target_dir . basename($file["name"]);
+            $result = move_uploaded_file($file["tmp_name"], $target_file);
+            if ($result) {
+                $path = $target_file;
+                $ccfile = "File uploaded successfully";
+            } else {
+                $ccfile = "Sorry, there was an error uploading your file.";
+                $isValid=false;
+            }
+        }
+        else
+        {
+            $path="";
+        }
         if(!empty($comment))
         {
             setcookie("comment", $comment, time() + (86400 * 30), "/");
@@ -111,10 +131,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         }
         if($isValid)
         {
-            $result=$database->signup($connection, "registration", $name, $password, $email, $website, $comment, $gender);
+            $result=$database->signup($connection, "registration", $name, $password, $email, $website, $comment, $gender, $path);
             if($result)
             {
-                $formdata=array("Name"=>$name, "Password"=>$password, "Email"=>$email, "Website"=>$website, "Comment"=>$comment, "Gender"=>$gender);
+                $formdata=array("Name"=>$name, "Password"=>$password, "Email"=>$email, "Website"=>$website, "Comment"=>$comment, "Gender"=>$gender, "FilePath"=>$path);
 
                 if(file_exists($data_file))
                 {
