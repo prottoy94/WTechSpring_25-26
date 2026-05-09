@@ -10,9 +10,9 @@ $table_name="course_db";
         die("Could not connect to the database: ".mysqli_connect_error());
         return $connection;
     }
-    function addStudent($connection, $table_name, $student_name, $student_id, $course_name, $semester)
+    function addStudent($connection, $table_name, $student_name, $student_id, $course_name, $semester, $path="")
     {
-        $sql="INSERT INTO ".$table_name."(student_name,student_id,course_name,semester) VAlUES ('".$student_name."','".$student_id."','".$course_name."','".$semester."')"; 
+        $sql="INSERT INTO ".$table_name."(student_name,student_id,course_name,semester,filepath) VALUES ('".$student_name."','".$student_id."','".$course_name."','".$semester."','".$path."')"; 
         $result=mysqli_query($connection, $sql);
         return $result;
     }

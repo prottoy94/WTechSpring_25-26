@@ -43,7 +43,7 @@
     <div class="container">
         <p id="message"></p>
 
-        <form id="courseForm" method="post" action="../Controller/courseController.php">
+        <form id="courseForm" method="post" action="../Controller/courseController.php" enctype="multipart/form-data">
             <label for="student_name">Student name:</label>
             <input type="text" id="student_name" name="student_name">
             <span id="student_name_error" class="error"></span><br><br>
@@ -64,6 +64,10 @@
                 <option value="Fall">Fall</option>
             </select>
             <span id="semester_error" class="error"></span><br><br>
+            <label for="file">Upload a attachement-</label>
+            <input type="file" id="file" name="file">
+            <br><br>
+
             <input type="submit" name="action" value="Register Course"><br><br>
 
             <label for="student_id_delete">Student ID to delete:</label>

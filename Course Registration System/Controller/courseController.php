@@ -8,6 +8,7 @@ $course_name="";
 $semester="";
 $student_name_delete="";
 $data_file="../data.json";
+$file="";
 $update_message="";
 
 $database= new db();
@@ -21,16 +22,32 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     $semester=$_POST["semester"]??"";
     $action=$_POST["action"]??"";
     $student_id_delete=$_POST["student_id_delete"]??"";
+    $file=$_FILES["file"]??"";
     
     if($action=="Register Course")
     {
         if(!empty($student_name)&& preg_match("/^([a-zA-Z ]+)$/", $student_name) && !empty($student_id)&& preg_match("/^STU-[0-9]{3}$/", $student_id)
         && !empty($course_name)&&!empty($semester))
         {
-            $result=addStudent($connection, $table_name, $student_name, $student_id, $course_name, $semester);
+            if($file && $file["error"] === UPLOAD_ERR_OK)
+            {
+                $targetdirectory="../File/";
+                $path=$targetdirectory.basename($file["name"]);
+                $result=move_uploaded_file($file["tmp_name"], $path);
+            }
+            else
+            {
+                $path="";
+            }
+
+            $result=addStudent($connection, $table_name, $student_name, $student_id, $course_name, $semester, $path);
+            if (!$result) {
+                echo "DB Error: " . mysqli_error($connection);
+                exit;
+            }
             if($result && $connection->affected_rows > 0)
             {
-                $form_data=array("Student_name"=>$student_name, "Student_id"=>$student_id, "Course_name"=>$course_name, "Semester"=>$semester);
+                $form_data=array("Student_name"=>$student_name, "Student_id"=>$student_id, "Course_name"=>$course_name, "Semester"=>$semester , "File_path"=>$path);
 
                 if(file_exists($data_file))
                 {
@@ -84,6 +101,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
                 alert("Student deleted successfully!");
                 window.location.href = "../View/course_form.php";
                 </script>';
+                $update_message="Student deleted successfully!";
                 $_SESSION["update_message"] = $update_message;
                 exit();
 
@@ -94,6 +112,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
                 alert("No student found with this ID!");
                 window.location.href = "../View/course_form.php";
                 </script>';
+                $update_message="No student found with this ID!";
                 $_SESSION["update_message"] = $update_message;
                 exit();
             }
@@ -104,6 +123,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
                 alert("Invalid Student ID! Please check your input and try again.");
                 window.location.href = "../View/course_form.php";
                 </script>';
+                $update_message="Invalid Student ID!";
                 $_SESSION["update_message"] = $update_message;
                 exit();
         }
