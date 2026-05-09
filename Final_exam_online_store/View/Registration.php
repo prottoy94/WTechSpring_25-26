@@ -11,7 +11,7 @@ include "../Controller/registration_validation.php";
             <h1>Registration</h1>
             <form method="post" action="">
                 <label for="username">Username: </label>
-                <input type="text" id="username" name="username" required><?php echo $ccname; ?><br><br>
+                <input type="text" id="username" name="username" onkeyup="checkUserName()" required><?php echo $ccname; ?><p id="userresponse" style="color:red"></p><br><br>
 
                 <label for="password">Password: </label>
                 <input type="password" id="password" name="password"><?php echo $ccpassword; ?><br><br>
@@ -29,5 +29,6 @@ include "../Controller/registration_validation.php";
 
             </form>   
         </div>
+        <script src="../Controller/JS/checkUserName.js"></script>
     </body>
 </html>

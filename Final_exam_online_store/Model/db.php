@@ -27,5 +27,11 @@ class db
         $result= $connection->query($sql);
         return $result;
     }
+    function checkUser($connection, $tablename, $username)
+    {
+        $sql="SELECT * FROM ".$tablename." WHERE name='".$username."'";
+        $result=$connection->query($sql);
+        return $result;
+    }
 }
 ?>
